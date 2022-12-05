@@ -9,7 +9,7 @@
 				  <li class="active">Giỏ hàng của bạn</li>
 				</ol>
 			</div>
-			<div class="table-responsive cart_info">
+			<div class="table-responsive cart_info" style="width: 80%;">
 				<?php
 				$content = Cart::content();
 				
@@ -17,11 +17,11 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Hình ảnh</td>
-							<td class="description">Tên sp</td>
+							<td class="image"	>Hình ảnh</td>
+							<td class="description">Tên sản phẩm</td>
 							<td class="price">Giá</td>
 							<td class="quantity">Số lượng</td>
-							<td class="total">Tổng</td>
+							<td class="total">Tổng tiền</td>
 							<td></td>
 						</tr>
 					</thead>
@@ -33,7 +33,6 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href="">{{$v_content->name}}</a></h4>
-								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
 								<p>{{number_format($v_content->price).' '.'vnđ'}}</p>
@@ -42,7 +41,7 @@
 								<div class="cart_quantity_button">
 									<form action="{{URL::to('/update-cart-quantity')}}" method="POST">
 									{{ csrf_field() }}
-									<input class="cart_quantity_input" type="text" name="cart_quantity" value="{{$v_content->qty}}"  >
+									<input class="cart_quantity_input" type="number" name="cart_quantity" value="{{$v_content->qty}}"  style="width: 50px;">
 									<input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="form-control">
 									<input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
 									</form>
@@ -69,9 +68,9 @@
 	</section> <!--/#cart_items-->
 
 	<section id="do_action">
-		<div class="container">
+		<div class="container" >
 		
-			<div class="row">
+			<div class="row" >
 			
 				<div class="col-sm-6">
 					<div class="total_area">

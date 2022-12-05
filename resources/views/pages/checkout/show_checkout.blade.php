@@ -126,7 +126,8 @@
 									@endphp
 									@foreach(Session::get('cart') as $key => $cart)
 										@php
-											$subtotal = $cart['product_price']*$cart['product_qty'];
+											<!-- $subtotal = $cart['product_price']*$cart['product_qty']; -->
+											$subtotal= 0;
 											$total+=$subtotal;
 										@endphp
 

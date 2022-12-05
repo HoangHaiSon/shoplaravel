@@ -175,10 +175,13 @@ class CheckoutController extends Controller
         //--seo 
 
     	$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
         $city = City::orderby('matp','ASC')->get();
 
-    	return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider);
+    	return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('product',$product)
+        ->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider);
     }
     public function save_checkout_customer(Request $request){
     	$data = array();
@@ -269,7 +272,8 @@ class CheckoutController extends Controller
     	if($result){
            
     		Session::put('customer_id',$result->customer_id);
-    		return Redirect::to('/checkout');
+            Session::put('customer_name',$result->customer_name);
+    		return Redirect::to('/trang-chu');
     	}else{
     		return Redirect::to('/dang-nhap');
     	}
